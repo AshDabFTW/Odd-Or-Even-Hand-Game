@@ -6,14 +6,17 @@ import nz.ac.auckland.se281.Main.Difficulty;
 /** This class represents the Game is the main entry point. */
 public class Game {
   private int gameCount = 0;
+  String playerName;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
-    MessageCli.WELCOME_PLAYER.printMessage(options[0]);
+    playerName = options[0];
+    MessageCli.WELCOME_PLAYER.printMessage(playerName);
+
   }
 
   public void play() {
     boolean askingLoop = true;
-    int fingerInputVal;
+    int fingerInputVal = 0;
 
     gameCount++;
     MessageCli.START_ROUND.printMessage(String.valueOf(gameCount));
@@ -34,6 +37,8 @@ public class Game {
         }
       }
     }
+
+    MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
   }
 
   public void endGame() {}
