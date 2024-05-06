@@ -12,21 +12,26 @@ public class Game {
   }
 
   public void play() {
+    boolean askingLoop = true;
+    int fingerInputVal;
+
     gameCount++;
     MessageCli.START_ROUND.printMessage(String.valueOf(gameCount));
     MessageCli.ASK_INPUT.printMessage();
-    boolean askingLoop = true;
+    
     while (askingLoop) {
       String fingerInput = Utils.scanner.nextLine();
-      try {
-        int fingerInputVal = Integer.valueOf(fingerInput);
+      if (!Utils.isInteger(fingerInput)) {
+        MessageCli.INVALID_INPUT.printMessage();
+      }
+      else {
+        fingerInputVal = Integer.valueOf(fingerInput.trim());
         if (fingerInputVal > 5 || fingerInputVal < 0) {
           MessageCli.INVALID_INPUT.printMessage();
-        } else {
+        }
+        else {
           askingLoop = false;
         }
-      } catch (Exception e) {
-        MessageCli.INVALID_INPUT.printMessage();
       }
     }
   }
