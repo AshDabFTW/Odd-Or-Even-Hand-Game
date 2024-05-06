@@ -15,7 +15,20 @@ public class Game {
     gameCount++;
     MessageCli.START_ROUND.printMessage(String.valueOf(gameCount));
     MessageCli.ASK_INPUT.printMessage();
-    String input = Utils.scanner.nextLine();
+    boolean askingLoop = true;
+    while (askingLoop) {
+      String fingerInput = Utils.scanner.nextLine();
+      try {
+        int fingerInputVal = Integer.valueOf(fingerInput);
+        if (fingerInputVal > 5 || fingerInputVal < 0) {
+          MessageCli.INVALID_INPUT.printMessage();
+        } else {
+          askingLoop = false;
+        }
+      } catch (Exception e) {
+        MessageCli.INVALID_INPUT.printMessage();
+      }
+    }
   }
 
   public void endGame() {}
