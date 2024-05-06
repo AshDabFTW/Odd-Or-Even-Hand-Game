@@ -14,6 +14,8 @@ public class Game {
   public void play() {
     gameCount++;
     MessageCli.START_ROUND.printMessage(String.valueOf(gameCount));
+    MessageCli.ASK_INPUT.printMessage();
+    String input = Utils.scanner.nextLine();
   }
 
   public void endGame() {}
