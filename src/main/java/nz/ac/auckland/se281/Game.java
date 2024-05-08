@@ -54,10 +54,10 @@ public class Game {
     // print the player hand
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
 
-    previousHumanGuesses.add(convertNumToEven(fingerInputVal));
+    previousHumanGuesses.add(convertNumToEvenOrOdd(fingerInputVal));
 
     // get the computer hand guess
-    computerGuess = difficultyLevel.computerGuess(previousHumanGuesses);
+    computerGuess = difficultyLevel.computerGuess(previousHumanGuesses, choice);
 
     // Prints the player and computer hand
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
@@ -67,7 +67,7 @@ public class Game {
     sum = fingerInputVal + computerGuess;
 
     // checks if sum is even or odd
-    sumOddOrEven = convertNumToEven(sum);
+    sumOddOrEven = convertNumToEvenOrOdd(sum);
 
     // checks if sum matches choice and prints who won the round
     if (sumOddOrEven.equals(choice)) {
@@ -78,7 +78,7 @@ public class Game {
     }
   }
 
-  public Choice convertNumToEven(int value) {
+  public Choice convertNumToEvenOrOdd(int value) {
     if (Utils.isEven(value)) {
       return Choice.EVEN;
     }

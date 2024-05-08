@@ -4,5 +4,5 @@ import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 
 public interface Strategy {
-  int computerGuess(List<Choice> previousGuesses);
+  int computerGuess(List<Choice> previousGuesses, Choice choice);
 }
