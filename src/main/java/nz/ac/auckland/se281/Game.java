@@ -1,5 +1,8 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
@@ -7,17 +10,19 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
   private int gameCount = 0;
   String playerName;
-  Difficulty difficulty;
+  DifficultyLevel difficultyLevel;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     playerName = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
-    this.difficulty = difficulty; 
+    difficultyLevel = DifficultyLevelFactory.creaDifficultyLevel(difficulty);
   }
 
   public void play() {
     boolean askingLoop = true;
     int fingerInputVal = 0;
+    List<Integer> previousGuesses = new ArrayList<Integer>();
+    int computerGuess = 0;
 
     gameCount++;
     MessageCli.START_ROUND.printMessage(String.valueOf(gameCount));
@@ -35,11 +40,17 @@ public class Game {
         }
         else {
           askingLoop = false;
+          previousGuesses.add(fingerInputVal);
         }
       }
     }
 
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
+
+    computerGuess = difficultyLevel.computerGuess(previousGuesses);
+
+    MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
+    MessageCli.PRINT_INFO_HAND.printMessage("HAL-9000", String.valueOf(computerGuess));
   }
 
   public void endGame() {}
