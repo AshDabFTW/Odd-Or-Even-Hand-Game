@@ -1,6 +1,5 @@
-package nz.ac;
+package nz.ac.auckland.se281;
 import java.util.ArrayList;
-import nz.ac.auckland.se281.Utils;
 
 public class Random implements Strategy{
 
