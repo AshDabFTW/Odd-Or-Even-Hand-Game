@@ -9,7 +9,7 @@ public class Top implements Strategy{
   public int computerGuess(List<Choice> previousGuesses, Choice choice) {
     int evenCount = 0;
     double evenPercentage;
-    Choice nextChoice;
+    Choice nextHumanChoice;
 
     for (Choice pastChoice : previousGuesses){
       if (pastChoice.equals(Choice.EVEN)) {
@@ -20,10 +20,16 @@ public class Top implements Strategy{
     evenPercentage = (evenCount / previousGuesses.size()) * 100;
 
     if (evenPercentage > 50) { 
-      nextChoice = Choice.EVEN;
+      nextHumanChoice = Choice.EVEN;
+    } else {
+      nextHumanChoice = Choice.ODD;
     }
 
-    return 0;
+    if (nextHumanChoice.equals(choice)) {
+      return Utils.getRandomOddNumber();
+    } else {
+      return Utils.getRandomEvenNumber();
+    }
   }
   
 }
