@@ -1,6 +1,7 @@
 package nz.ac.auckland.se281;
 
 import java.util.List;
+import nz.ac.auckland.se281.Main.Choice;
 
 public class Medium implements DifficultyLevel{
   private Strategy strategy;
@@ -11,7 +12,7 @@ public class Medium implements DifficultyLevel{
   }
 
   @Override
-  public int computerGuess(List<Integer> previousGuesses) {
+  public int computerGuess(List<Choice> previousGuesses) {
     if (previousGuesses.size() == 4) {
       this.setStrategy(new Top());
     }

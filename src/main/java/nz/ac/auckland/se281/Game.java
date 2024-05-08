@@ -11,14 +11,14 @@ public class Game {
   private int gameCount = 0;
   String playerName;
   DifficultyLevel difficultyLevel;
-  List<Integer> previousGuesses = new ArrayList<Integer>();
-  String choice;
+  List<Choice> previousHumanGuesses = new ArrayList<Choice>();
+  Choice choice;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     playerName = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
     difficultyLevel = DifficultyLevelFactory.creaDifficultyLevel(difficulty);
-    this.choice = choice.name();
+    this.choice = choice;
   }
 
   public void play() {
@@ -27,7 +27,7 @@ public class Game {
     int fingerInputVal = 0;
     int computerGuess = 0;
     int sum = 0;
-    String sumOddOrEven;
+    Choice sumOddOrEven;
 
     // print the current game number
     gameCount++;
@@ -47,7 +47,6 @@ public class Game {
         }
         else {
           askingLoop = false;
-          previousGuesses.add(fingerInputVal);
         }
       }
     }
@@ -55,8 +54,10 @@ public class Game {
     // print the player hand
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
 
+    previousHumanGuesses.add(convertNumToEven(fingerInputVal));
+
     // get the computer hand guess
-    computerGuess = difficultyLevel.computerGuess(previousGuesses);
+    computerGuess = difficultyLevel.computerGuess(previousHumanGuesses);
 
     // Prints the player and computer hand
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
@@ -66,19 +67,23 @@ public class Game {
     sum = fingerInputVal + computerGuess;
 
     // checks if sum is even or odd
-    if (Utils.isEven(sum)) {
-      sumOddOrEven = "EVEN";
-    }
-    else {
-      sumOddOrEven = "ODD";
-    }
+    sumOddOrEven = convertNumToEven(sum);
 
     // checks if sum matches choice and prints who won the round
     if (sumOddOrEven.equals(choice)) {
-      MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), sumOddOrEven, playerName);
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), sumOddOrEven.name(), playerName);
     }
     else {
-      MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), sumOddOrEven, "HAL-9000"); 
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), sumOddOrEven.name(), "HAL-9000"); 
+    }
+  }
+
+  public Choice convertNumToEven(int value) {
+    if (Utils.isEven(value)) {
+      return Choice.EVEN;
+    }
+    else {
+      return Choice.ODD;
     }
   }
 
