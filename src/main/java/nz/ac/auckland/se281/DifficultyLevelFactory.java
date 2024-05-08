@@ -7,6 +7,8 @@ public class DifficultyLevelFactory {
     switch (difficulty) {
       case EASY:
         return new Easy();    
+      case MEDIUM:
+        return new Medium();  
       default:
         return null;
     }
