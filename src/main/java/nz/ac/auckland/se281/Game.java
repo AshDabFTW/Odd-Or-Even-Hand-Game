@@ -7,11 +7,12 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
   private int gameCount = 0;
   String playerName;
+  Difficulty difficulty;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     playerName = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
-
+    this.difficulty = difficulty; 
   }
 
   public void play() {
