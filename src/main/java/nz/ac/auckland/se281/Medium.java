@@ -12,13 +12,15 @@ public class Medium implements DifficultyLevel{
 
   @Override
   public int computerGuess(List<Integer> previousGuesses) {
+    if (previousGuesses.size() == 4) {
+      this.setStrategy(new Top());
+    }
     return strategy.computerGuess(previousGuesses);
   }
 
   @Override
   public void setStrategy(Strategy strategy) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setStrategy'");
+    this.strategy = strategy;
   }
   
 }
