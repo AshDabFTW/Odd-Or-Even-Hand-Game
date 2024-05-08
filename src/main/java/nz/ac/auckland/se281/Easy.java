@@ -1,7 +1,6 @@
 package nz.ac.auckland.se281;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class Easy implements DifficultyLevel{
   private Strategy strategy;
@@ -9,6 +8,10 @@ public class Easy implements DifficultyLevel{
   public Easy(){
     strategy = new Random();
     return;
+  }
+
+  public void setStrategy (Strategy strategy) {
+    this.strategy = strategy;
   }
 
   public int computerGuess(List<Integer> previousGuesses){
