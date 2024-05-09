@@ -11,18 +11,22 @@ public class Top implements Strategy{
     double evenPercentage;
     Choice nextHumanChoice;
 
+    previousGuesses.remove(previousGuesses.size() - 1);
+
     for (Choice pastChoice : previousGuesses){
       if (pastChoice.equals(Choice.EVEN)) {
         evenCount++;
       }
     }
 
-    evenPercentage = (evenCount / previousGuesses.size()) * 100;
+    evenPercentage = ((double) evenCount / (double) previousGuesses.size()) * 100;
 
     if (evenPercentage > 50) { 
       nextHumanChoice = Choice.EVEN;
-    } else {
+    } else if (evenPercentage < 50){
       nextHumanChoice = Choice.ODD;
+    } else {
+      return Utils.getRandomNumberRange(0, 5);
     }
 
     if (nextHumanChoice.equals(choice)) {

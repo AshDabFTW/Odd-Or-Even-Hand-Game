@@ -2,7 +2,6 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
@@ -32,27 +31,22 @@ public class Game {
     // print the current game number
     gameCount++;
     MessageCli.START_ROUND.printMessage(String.valueOf(gameCount));
-    
+
     // gets a valid guess from the human player
     while (askingLoop) {
       MessageCli.ASK_INPUT.printMessage();
       String fingerInput = Utils.scanner.nextLine();
       if (!Utils.isInteger(fingerInput)) {
         MessageCli.INVALID_INPUT.printMessage();
-      }
-      else {
+      } else {
         fingerInputVal = Integer.valueOf(fingerInput.trim());
         if (fingerInputVal > 5 || fingerInputVal < 0) {
           MessageCli.INVALID_INPUT.printMessage();
-        }
-        else {
+        } else {
           askingLoop = false;
         }
       }
     }
-
-    // print the player hand
-    MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
 
     previousHumanGuesses.add(convertNumToEvenOrOdd(fingerInputVal));
 
@@ -71,18 +65,18 @@ public class Game {
 
     // checks if sum matches choice and prints who won the round
     if (sumOddOrEven.equals(choice)) {
-      MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), sumOddOrEven.name(), playerName);
-    }
-    else {
-      MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), sumOddOrEven.name(), "HAL-9000"); 
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage(
+          String.valueOf(sum), sumOddOrEven.name(), playerName);
+    } else {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage(
+          String.valueOf(sum), sumOddOrEven.name(), "HAL-9000");
     }
   }
 
   public Choice convertNumToEvenOrOdd(int value) {
     if (Utils.isEven(value)) {
       return Choice.EVEN;
-    }
-    else {
+    } else {
       return Choice.ODD;
     }
   }
