@@ -100,7 +100,14 @@ public class Game {
   }
 
   public void endGame() {
-
+    showStats();
+    if (playerWins > compWins) {
+      MessageCli.PRINT_END_GAME.printMessage(playerName);
+    } else if (compWins > playerWins) {
+      MessageCli.PRINT_END_GAME.printMessage("HAL-9000");
+    } else {
+      MessageCli.PRINT_END_GAME_TIE.printMessage();
+    }
   }
 
   public void showStats() {
