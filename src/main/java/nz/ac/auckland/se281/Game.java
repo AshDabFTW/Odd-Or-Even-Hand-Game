@@ -12,8 +12,10 @@ public class Game {
   DifficultyLevel difficultyLevel;
   List<Choice> previousHumanGuesses;
   Choice choice;
+  boolean gameMade = false;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
+    gameMade = true;
     playerName = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
     difficultyLevel = DifficultyLevelFactory.creaDifficultyLevel(difficulty);
@@ -30,6 +32,11 @@ public class Game {
     int sum = 0;
     Choice sumOddOrEven;
     boolean playerWonPreviousGame = true;
+
+    if (!gameMade) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
 
     // print the current game number
     gameCount++;
