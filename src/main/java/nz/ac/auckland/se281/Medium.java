@@ -12,7 +12,7 @@ public class Medium implements DifficultyLevel{
   }
 
   @Override
-  public int computerGuess(List<Choice> previousGuesses, Choice choice) {
+  public int computerGuess(List<Choice> previousGuesses, Choice choice, boolean playerWonPreviousGame) {
     if (previousGuesses.size() == 4) {
       this.setStrategy(new Top());
     }

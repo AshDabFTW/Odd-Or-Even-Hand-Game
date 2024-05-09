@@ -29,6 +29,7 @@ public class Game {
     int computerGuess = 0;
     int sum = 0;
     Choice sumOddOrEven;
+    boolean playerWonPreviousGame = true;
 
     // print the current game number
     gameCount++;
@@ -53,7 +54,7 @@ public class Game {
     previousHumanGuesses.add(convertNumToEvenOrOdd(fingerInputVal));
 
     // get the computer hand guess
-    computerGuess = difficultyLevel.computerGuess(previousHumanGuesses, choice);
+    computerGuess = difficultyLevel.computerGuess(previousHumanGuesses, choice, playerWonPreviousGame);
 
     // Prints the player and computer hand
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
@@ -69,9 +70,11 @@ public class Game {
     if (sumOddOrEven.equals(choice)) {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage(
           String.valueOf(sum), sumOddOrEven.name(), playerName);
+      playerWonPreviousGame = true;
     } else {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage(
           String.valueOf(sum), sumOddOrEven.name(), "HAL-9000");
+      playerWonPreviousGame = false;
     }
   }
 

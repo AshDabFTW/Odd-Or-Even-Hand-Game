@@ -15,7 +15,7 @@ public class Easy implements DifficultyLevel{
     this.strategy = strategy;
   }
 
-  public int computerGuess(List<Choice> previousGuesses, Choice choice){
+  public int computerGuess(List<Choice> previousGuesses, Choice choice, boolean playerWonPreviousGame){
     return strategy.computerGuess(previousGuesses, choice);
   }
 }
