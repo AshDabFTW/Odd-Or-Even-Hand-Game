@@ -100,6 +100,11 @@ public class Game {
   }
 
   public void endGame() {
+    if (!gameMade) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+
     showStats();
     if (playerWins > compWins) {
       MessageCli.PRINT_END_GAME.printMessage(playerName);
@@ -108,6 +113,8 @@ public class Game {
     } else {
       MessageCli.PRINT_END_GAME_TIE.printMessage();
     }
+
+    gameMade = false;
   }
 
   public void showStats() {
