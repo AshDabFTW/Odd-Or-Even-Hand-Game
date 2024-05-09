@@ -10,14 +10,16 @@ public class Game {
   private int gameCount = 0;
   String playerName;
   DifficultyLevel difficultyLevel;
-  List<Choice> previousHumanGuesses = new ArrayList<Choice>();
+  List<Choice> previousHumanGuesses;
   Choice choice;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     playerName = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
     difficultyLevel = DifficultyLevelFactory.creaDifficultyLevel(difficulty);
+    previousHumanGuesses = new ArrayList<Choice>();
     this.choice = choice;
+    gameCount = 0;
   }
 
   public void play() {
