@@ -7,7 +7,7 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 /** This class represents the Game is the main entry point. */
 public class Game {
-  private int gameCount = 0;
+  private int gameCount;
   String playerName;
   DifficultyLevel difficultyLevel;
   List<Choice> previousHumanGuesses;
@@ -95,5 +95,10 @@ public class Game {
 
   public void endGame() {}
 
-  public void showStats() {}
+  public void showStats() {
+    if (!gameMade) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+  }
 }
