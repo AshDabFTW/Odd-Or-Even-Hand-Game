@@ -13,6 +13,8 @@ public class Game {
   List<Choice> previousHumanGuesses;
   Choice choice;
   boolean gameMade = false;
+  int playerWins;
+  int compWins;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     gameMade = true;
@@ -22,6 +24,8 @@ public class Game {
     previousHumanGuesses = new ArrayList<Choice>();
     this.choice = choice;
     gameCount = 0;
+    playerWins = 0;
+    compWins = 0;
   }
 
   public void play() {
@@ -78,10 +82,12 @@ public class Game {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage(
           String.valueOf(sum), sumOddOrEven.name(), playerName);
       playerWonPreviousGame = true;
+      playerWins++;
     } else {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage(
           String.valueOf(sum), sumOddOrEven.name(), "HAL-9000");
       playerWonPreviousGame = false;
+      compWins++;
     }
   }
 
@@ -93,12 +99,18 @@ public class Game {
     }
   }
 
-  public void endGame() {}
+  public void endGame() {
+
+  }
 
   public void showStats() {
     if (!gameMade) {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
+
+    MessageCli.PRINT_PLAYER_WINS.printMessage(playerName, String.valueOf(playerWins), String.valueOf(gameCount-playerWins));
+    MessageCli.PRINT_PLAYER_WINS.printMessage("HAL-9000", String.valueOf(compWins), String.valueOf(gameCount-compWins));
+
   }
 }
