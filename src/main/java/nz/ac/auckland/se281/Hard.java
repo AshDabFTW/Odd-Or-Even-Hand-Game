@@ -5,30 +5,30 @@ import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 
 public class Hard implements DifficultyLevel{
-  private Strategy strategy;
+  private Strategy currentStrategy;
+  private Strategy topStrategy = new Top();
+  private Strategy randomStrategy = new Random();
 
   public Hard(){
-    strategy = new Random();
+    currentStrategy = randomStrategy;
     return;
   }
 
   @Override
   public int computerGuess(List<Choice> previousHumanGuesses, Choice choice, boolean playerWonPreviousGame) {
-    if (previousHumanGuesses.size() == 4) {
-      this.setStrategy(new Top());
-    } else if (previousHumanGuesses.size() > 4 && playerWonPreviousGame == false) {
-      if (strategy instanceof Top) {
-        setStrategy(new Random());
+    if ((previousHumanGuesses.size() >= 4) && (playerWonPreviousGame)) {
+      if (currentStrategy instanceof Top) {
+        setStrategy(randomStrategy);
       } else {
-        setStrategy(new Top());
+        setStrategy(topStrategy);
       }
     }
-    return strategy.computerGuess(previousHumanGuesses, choice);
+    return currentStrategy.computerGuess(previousHumanGuesses, choice);
   }
 
   @Override
   public void setStrategy(Strategy strategy) {
-    this.strategy = strategy;
+    currentStrategy = strategy;
   }
   
 }
