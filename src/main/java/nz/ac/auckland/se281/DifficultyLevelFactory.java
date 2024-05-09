@@ -8,7 +8,9 @@ public class DifficultyLevelFactory {
       case EASY:
         return new Easy();    
       case MEDIUM:
-        return new Medium();  
+        return new Medium();
+      case HARD:
+        return new Hard();    
       default:
         return null;
     }
