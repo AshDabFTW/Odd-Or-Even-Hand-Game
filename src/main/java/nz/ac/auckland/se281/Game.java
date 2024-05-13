@@ -25,6 +25,7 @@ public class Game {
    * @param options features player name.
    */
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
+    // initialises all of the constructor fields, creates difficulty level instances
     gameMade = true;
     playerName = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
