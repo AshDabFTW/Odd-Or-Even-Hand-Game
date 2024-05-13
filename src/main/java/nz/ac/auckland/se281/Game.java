@@ -7,7 +7,9 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 /** This class represents the Game is the main entry point. */
 public class Game {
+  /** itialises variable fields for class */
   private int gameCount;
+
   String playerName;
   DifficultyLevel difficultyLevel;
   List<Choice> previousHumanGuesses;
@@ -16,6 +18,13 @@ public class Game {
   int playerWins;
   int compWins;
 
+  /**
+   * method which is ran whenever a new game is run and defines the variable fields
+   *
+   * @param difficulty difficulty enum selected by user
+   * @param choice odd or even choice selected by user
+   * @param options features player name
+   */
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     gameMade = true;
     playerName = options[0];
@@ -28,8 +37,9 @@ public class Game {
     compWins = 0;
   }
 
+  /** Method which is run everytime the player runs the play command to play against computer */
   public void play() {
-    // initialise values
+    /** initialise values */
     boolean askingLoop = true;
     int fingerInputVal = 0;
     int computerGuess = 0;
@@ -37,6 +47,7 @@ public class Game {
     Choice sumOddOrEven;
     boolean playerWonPreviousGame = true;
 
+    // check if a game has been made otherwise print error message
     if (!gameMade) {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
@@ -62,10 +73,12 @@ public class Game {
       }
     }
 
+    // adds even or odd guesse to previous guess array list
     previousHumanGuesses.add(convertNumToEvenOrOdd(fingerInputVal));
 
     // get the computer hand guess
-    computerGuess = difficultyLevel.computerGuess(previousHumanGuesses, choice, playerWonPreviousGame);
+    computerGuess =
+        difficultyLevel.computerGuess(previousHumanGuesses, choice, playerWonPreviousGame);
 
     // Prints the player and computer hand
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, String.valueOf(fingerInputVal));
@@ -91,6 +104,7 @@ public class Game {
     }
   }
 
+  // method that converts a number to Even or Odd choice enum type
   public Choice convertNumToEvenOrOdd(int value) {
     if (Utils.isEven(value)) {
       return Choice.EVEN;
@@ -123,8 +137,9 @@ public class Game {
       return;
     }
 
-    MessageCli.PRINT_PLAYER_WINS.printMessage(playerName, String.valueOf(playerWins), String.valueOf(gameCount-playerWins));
-    MessageCli.PRINT_PLAYER_WINS.printMessage("HAL-9000", String.valueOf(compWins), String.valueOf(gameCount-compWins));
-
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        playerName, String.valueOf(playerWins), String.valueOf(gameCount - playerWins));
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        "HAL-9000", String.valueOf(compWins), String.valueOf(gameCount - compWins));
   }
 }
