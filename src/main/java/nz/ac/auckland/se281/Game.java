@@ -9,14 +9,13 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
   /** itialises variable fields for class */
   private int gameCount;
-
-  String playerName;
-  DifficultyLevel difficultyLevel;
-  List<Choice> previousHumanGuesses;
-  Choice choice;
-  boolean gameMade = false;
-  int playerWins;
-  int compWins;
+  private String playerName;
+  private DifficultyLevel difficultyLevel;
+  private List<Choice> previousHumanGuesses;
+  private Choice choice;
+  private boolean gameMade = false;
+  private int playerWins;
+  private int compWins;
 
   /**
    * method which is ran whenever a new game is run and defines the variable fields
@@ -42,8 +41,8 @@ public class Game {
     /** initialise values */
     boolean askingLoop = true;
     int fingerInputVal = 0;
-    int computerGuess = 0;
-    int sum = 0;
+    int computerGuess;
+    int sum;
     Choice sumOddOrEven;
     boolean playerWonPreviousGame = true;
 
