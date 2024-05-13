@@ -3,6 +3,10 @@ package nz.ac.auckland.se281;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 
+/**
+ * This sets up the hard difficulty level implementing a random strategy that will, after the forth
+ * round, switch strategy if it has lost the previous round.
+ */
 public class Hard implements DifficultyLevel {
   // initialise strategy types
   private Strategy currentStrategy;
@@ -15,7 +19,8 @@ public class Hard implements DifficultyLevel {
     return;
   }
 
-  // method to call computerguess in strategy class for the selected strategy
+  // method to call computerguess in strategy class for the selected strategy and will switch
+  // strategy if it has lost the previous round after the forth round
   @Override
   public int computerGuess(
       List<Choice> previousHumanGuesses, Choice choice, boolean playerWonPreviousGame) {

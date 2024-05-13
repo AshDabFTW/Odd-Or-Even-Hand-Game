@@ -3,6 +3,10 @@ package nz.ac.auckland.se281;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 
+/**
+ * This sets up the medium difficulty level implementing a random strategy that will switch to top
+ * strategy in the forth round.
+ */
 public class Medium implements DifficultyLevel {
   // initialise strategy type
   private Strategy strategy;
@@ -13,7 +17,8 @@ public class Medium implements DifficultyLevel {
     return;
   }
 
-  // method to call computerguess in strategy class for the selected strategy
+  // method to call computerguess in strategy class for the selected strategy and will change to top
+  // strategy in forth round
   @Override
   public int computerGuess(
       List<Choice> previousHumanGuesses, Choice choice, boolean playerWonPreviousGame) {
