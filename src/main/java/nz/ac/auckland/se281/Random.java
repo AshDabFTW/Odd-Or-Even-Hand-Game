@@ -8,7 +8,7 @@ public class Random implements Strategy {
 
   // method that output random value as a guess.
   @Override
-  public int computerGuess(List<Choice> previousGuesses, Choice choice) {
+  public int computerGuess(List<Choice> previousHumanGuesses, Choice choice) {
     return Utils.getRandomNumberRange(0, 5);
   }
 }

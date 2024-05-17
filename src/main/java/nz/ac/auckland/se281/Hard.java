@@ -26,7 +26,7 @@ public class Hard implements DifficultyLevel {
       List<Choice> previousHumanGuesses, Choice choice, boolean playerWonPreviousGame) {
     // if more than 3 games played, it will switch strategy if lost previous game
     if ((previousHumanGuesses.size() >= 4) && (playerWonPreviousGame)) {
-      if (currentStrategy instanceof Top) {
+      if (currentStrategy.equals(topStrategy)) {
         setStrategy(randomStrategy);
       } else {
         setStrategy(topStrategy);

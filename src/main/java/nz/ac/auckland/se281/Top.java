@@ -11,24 +11,21 @@ public class Top implements Strategy {
 
   // method that will make the guess
   @Override
-  public int computerGuess(List<Choice> previousGuesses, Choice choice) {
+  public int computerGuess(List<Choice> previousHumanGuesses, Choice choice) {
     // initialising values.
     int evenCount = 0;
     double evenPercentage;
     Choice nextHumanChoice;
 
-    // removes the guess for the current round as it shouldnt know this yet.
-    previousGuesses.remove(previousGuesses.size() - 1);
-
     // for loop to count how many human guesses have been even.
-    for (Choice pastChoice : previousGuesses) {
-      if (pastChoice.equals(Choice.EVEN)) {
+    for (int i = 0; i < previousHumanGuesses.size() - 1; i++) {
+      if (previousHumanGuesses.get(i).equals(Choice.EVEN)) {
         evenCount++;
       }
     }
 
     // calculates the percentage of guesses that have been even.
-    evenPercentage = ((double) evenCount / (double) previousGuesses.size()) * 100;
+    evenPercentage = ((double) evenCount / (double) (previousHumanGuesses.size() - 1)) * 100;
 
     // based on percentage of previous even guesses predicts next human guess otherwise produces
     // random output.

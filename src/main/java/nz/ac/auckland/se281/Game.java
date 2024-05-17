@@ -16,6 +16,7 @@ public class Game {
   private boolean gameMade = false;
   private int playerWins;
   private int compWins;
+  private boolean playerWonPreviousGame;
 
   /**
    * method which is ran whenever a new game is run and defines the variable fields.
@@ -35,6 +36,7 @@ public class Game {
     gameCount = 0;
     playerWins = 0;
     compWins = 0;
+    playerWonPreviousGame = true;
   }
 
   /** Method which is run everytime the player runs the play command to play against computer. */
@@ -45,7 +47,6 @@ public class Game {
     int computerGuess;
     int sum;
     Choice sumOddOrEven;
-    boolean playerWonPreviousGame = true;
 
     // check if a game has been made otherwise print error message.
     if (!gameMade) {
